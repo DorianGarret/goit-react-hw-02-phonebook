@@ -1,7 +1,46 @@
 import { Fragment } from 'react';
+// import { nanoid } from 'nanoid';
+import React, { Component } from 'react';
 
-function App() {
-  return <Fragment></Fragment>;
+export default class App extends Component {
+  state = {
+    contacts: [],
+    filter: '',
+    name: '',
+    number: '',
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <h1>Phonebook</h1>
+
+        <form>
+          <label>
+            Name
+            <input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+          </label>
+
+          <label>
+            Number
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+          </label>
+
+          <button type="submit">Add contact</button>
+        </form>
+      </Fragment>
+    );
+  }
 }
-
-export default App;
