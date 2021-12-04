@@ -1,33 +1,59 @@
 import React, { Component, Fragment } from 'react';
 import { nanoid } from 'nanoid';
-import contacts from 'data/contacts.json';
+import initialContacts from 'data/contacts.json';
 import Form from 'components/Form';
+import Filter from 'components/Filter';
+import ContactList from 'components/ContactList/ContactList';
+
 export default class App extends Component {
   state = {
-    contacts: contacts,
+    contacts: initialContacts,
     filter: '',
   };
 
   setContact = data => {
-    const { name, number } = data;
-    const id = nanoid();
-    // if (this.state.contacts.find(({ name }) => name === data.name))
-    //   return window.alert(`${data.name} is already in contacts.`);
-    this.setState(prevState => ({
-      contacts: contacts.push({ id, name, number }),
-      ...prevState,
+    const { contacts } = this.state;
+    const normalizedName = data.name.toLowerCase();
+
+    const isContact = contacts.find(contact => {
+      return contact.name.toLowerCase().includes(normalizedName);
+    });
+
+    if (isContact) {
+      return alert(`${data.name} is already in contacts`);
+    }
+
+    const contact = { id: nanoid(), ...data };
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
     }));
-    console.log(this.state);
-    console.log(contacts);
   };
 
+  checkContact = contacts => {};
+
+  changeFilter = event => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
+  getContact = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter),
+    );
+  };
   render() {
+    const { filter } = this.state;
+    const { setContact, changeFilter, getContact } = this;
+
     return (
       <Fragment>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.setContact} />
+        <Form onSubmit={setContact} />
         <h2>Contacts</h2>
-        <ul>{}</ul>
+        <Filter value={filter} onChange={changeFilter} />
+        <ContactList getContact={getContact()} />
       </Fragment>
     );
   }
