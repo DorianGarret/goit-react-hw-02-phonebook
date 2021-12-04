@@ -1,45 +1,33 @@
-import { Fragment } from 'react';
-// import { nanoid } from 'nanoid';
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
+import { nanoid } from 'nanoid';
+import contacts from 'data/contacts.json';
+import Form from 'components/Form';
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: contacts,
     filter: '',
-    name: '',
-    number: '',
+  };
+
+  setContact = data => {
+    const { name, number } = data;
+    const id = nanoid();
+    // if (this.state.contacts.find(({ name }) => name === data.name))
+    //   return window.alert(`${data.name} is already in contacts.`);
+    this.setState(prevState => ({
+      contacts: contacts.push({ id, name, number }),
+      ...prevState,
+    }));
+    console.log(this.state);
+    console.log(contacts);
   };
 
   render() {
     return (
       <Fragment>
         <h1>Phonebook</h1>
-
-        <form>
-          <label>
-            Name
-            <input
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </label>
-
-          <label>
-            Number
-            <input
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-          </label>
-
-          <button type="submit">Add contact</button>
-        </form>
+        <Form onSubmit={this.setContact} />
+        <h2>Contacts</h2>
+        <ul>{}</ul>
       </Fragment>
     );
   }
