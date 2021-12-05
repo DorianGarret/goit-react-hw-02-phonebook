@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdDeleteForever } from 'react-icons/md';
 import { List, ListItem, Button } from './ContactList.styled';
 
@@ -16,3 +17,8 @@ export default function ContactList({ getContact, onDeleteContact }) {
     </List>
   );
 }
+
+ContactList.propTypes = {
+  getContact: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+};
