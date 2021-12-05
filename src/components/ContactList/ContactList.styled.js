@@ -23,7 +23,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  padding: 5px;
+  padding: 10px;
   margin-left: 20px;
 
   background-color: var(--bs-cyan);

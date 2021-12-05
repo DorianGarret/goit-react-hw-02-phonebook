@@ -8,7 +8,7 @@ export default function ContactList({ getContact, onDeleteContact }) {
         <ListItem key={id}>
           <p>{`${name}: ${number}`}</p>
           <Button onClick={() => onDeleteContact(id)}>
-            <MdDeleteForever />
+            <MdDeleteForever style={{ marginRight: 10 }} />
             Delete
           </Button>
         </ListItem>
