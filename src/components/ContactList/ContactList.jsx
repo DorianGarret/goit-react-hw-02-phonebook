@@ -1,11 +1,18 @@
-export default function ContactList({ getContact }) {
+import { MdDeleteForever } from 'react-icons/md';
+import { List, ListItem, Button } from './ContactList.styled';
+
+export default function ContactList({ getContact, onDeleteContact }) {
   return (
-    <ul>
+    <List>
       {getContact.map(({ id, name, number }) => (
-        <li key={id}>
+        <ListItem key={id}>
           <p>{`${name}: ${number}`}</p>
-        </li>
+          <Button onClick={() => onDeleteContact(id)}>
+            <MdDeleteForever />
+            Delete
+          </Button>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }

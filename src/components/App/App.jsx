@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import initialContacts from 'data/contacts.json';
 import Form from 'components/Form';
 import Filter from 'components/Filter';
-import ContactList from 'components/ContactList/ContactList';
+import ContactList from 'components/ContactList';
+import { Container, Phonebook, Contacts, Empty } from './App.styled';
 
 export default class App extends Component {
   state = {
@@ -29,8 +30,6 @@ export default class App extends Component {
     }));
   };
 
-  checkContact = contacts => {};
-
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };
@@ -43,18 +42,34 @@ export default class App extends Component {
       name.toLowerCase().includes(normalizedFilter),
     );
   };
+
+  deleteContact = contactId => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
+      filter: '',
+    }));
+  };
+
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const { setContact, changeFilter, getContact } = this;
+    const visibleContact = getContact();
 
     return (
-      <Fragment>
-        <h1>Phonebook</h1>
+      <Container>
+        <Phonebook>Phonebook</Phonebook>
         <Form onSubmit={setContact} />
-        <h2>Contacts</h2>
+        <Contacts>Contacts</Contacts>
         <Filter value={filter} onChange={changeFilter} />
-        <ContactList getContact={getContact()} />
-      </Fragment>
+        {contacts.length ? (
+          <ContactList
+            getContact={visibleContact}
+            onDeleteContact={this.deleteContact}
+          />
+        ) : (
+          <Empty>Phonebook is Empty</Empty>
+        )}
+      </Container>
     );
   }
 }

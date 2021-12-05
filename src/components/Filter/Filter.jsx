@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
 import { nanoid } from 'nanoid';
+import { FilterContainer, Label } from './Filter.styled';
 
-export default function Filter({ value, onChange, ...restProps }) {
+export default function Filter({ value, onChange }) {
   const inputSearchId = nanoid();
   return (
-    <Fragment>
-      <label htmlFor={inputSearchId}>Find contacts by name</label>
+    <FilterContainer>
+      <Label htmlFor={inputSearchId}>Find contacts by name</Label>
       <input
         type="text"
         name="name"
@@ -16,6 +16,6 @@ export default function Filter({ value, onChange, ...restProps }) {
         id={inputSearchId}
         onChange={onChange}
       />
-    </Fragment>
+    </FilterContainer>
   );
 }

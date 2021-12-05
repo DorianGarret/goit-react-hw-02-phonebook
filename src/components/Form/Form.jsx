@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { MdPersonAdd } from 'react-icons/md';
+import { FormContainer, Label, Input, Button } from './Form.styled';
 
 export default class Form extends Component {
   state = {
@@ -30,9 +32,9 @@ export default class Form extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameId}>Name</label>
-        <input
+      <FormContainer onSubmit={this.handleSubmit}>
+        <Label htmlFor={this.nameId}>Name</Label>
+        <Input
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -43,8 +45,8 @@ export default class Form extends Component {
           onChange={this.handleChange}
         />
 
-        <label htmlFor={this.numberId}>Number</label>
-        <input
+        <Label htmlFor={this.numberId}>Number</Label>
+        <Input
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -55,8 +57,11 @@ export default class Form extends Component {
           onChange={this.handleChange}
         />
 
-        <button type="submit">Add contact</button>
-      </form>
+        <Button type="submit">
+          <MdPersonAdd size={20} style={{ marginRight: 10 }} />
+          Add contact
+        </Button>
+      </FormContainer>
     );
   }
 }
