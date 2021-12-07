@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { MdPersonAdd } from 'react-icons/md';
-import { FormContainer, Label, Input, Button } from './Form.styled';
+import { FormContainer, Label, Input, Button, Icon } from './Form.styled';
 
 export default class Form extends Component {
   state = {
@@ -22,9 +21,9 @@ export default class Form extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.onSubmit(this.state);
-    this.reset();
+    this.resetState();
   };
-  reset = () => {
+  resetState = () => {
     this.setState({ name: '', number: '' });
   };
 
@@ -58,7 +57,7 @@ export default class Form extends Component {
         />
 
         <Button type="submit">
-          <MdPersonAdd size={20} style={{ marginRight: 10 }} />
+          <Icon />
           Add contact
         </Button>
       </FormContainer>

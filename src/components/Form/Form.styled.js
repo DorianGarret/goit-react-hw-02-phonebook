@@ -1,4 +1,5 @@
 import styled from '@emotion/styled/macro';
+import { MdPersonAdd } from 'react-icons/md';
 
 export const FormContainer = styled.form`
   display: flex;
@@ -20,6 +21,11 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   margin-bottom: 20px;
+`;
+
+export const Icon = styled(MdPersonAdd)`
+  font-size: 20px;
+  margin-right: 10px;
 `;
 
 export const Button = styled.button`

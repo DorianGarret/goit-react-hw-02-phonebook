@@ -1,4 +1,5 @@
 import styled from '@emotion/styled/macro';
+import { MdDeleteForever } from 'react-icons/md';
 
 export const List = styled.ul`
   display: flex;
@@ -9,6 +10,10 @@ export const List = styled.ul`
   width: 500px;
 `;
 
+export const Icon = styled(MdDeleteForever)`
+  font-size: 20px;
+  margin-right: 10px;
+`;
 export const ListItem = styled.li`
   display: flex;
   padding: 10px;

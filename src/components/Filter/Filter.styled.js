@@ -9,5 +9,12 @@ export const FilterContainer = styled.div`
 `;
 
 export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 10px;
+
+  span {
+    margin-bottom: 10px;
+  }
 `;

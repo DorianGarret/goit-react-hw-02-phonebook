@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { MdDeleteForever } from 'react-icons/md';
-import { List, ListItem, Button } from './ContactList.styled';
+import { List, ListItem, Button, Icon } from './ContactList.styled';
 
 export default function ContactList({ getContact, onDeleteContact }) {
   return (
@@ -9,7 +8,7 @@ export default function ContactList({ getContact, onDeleteContact }) {
         <ListItem key={id}>
           <p>{`${name}: ${number}`}</p>
           <Button onClick={() => onDeleteContact(id)}>
-            <MdDeleteForever style={{ marginRight: 10 }} />
+            <Icon />
             Delete
           </Button>
         </ListItem>

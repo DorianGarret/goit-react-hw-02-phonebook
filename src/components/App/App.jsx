@@ -61,14 +61,13 @@ export default class App extends Component {
         <Form onSubmit={setContact} />
         <Contacts>Contacts</Contacts>
         <Filter value={filter} onChange={changeFilter} />
-        {contacts.length ? (
+        {contacts.length > 0 && (
           <ContactList
             getContact={visibleContact}
             onDeleteContact={this.deleteContact}
           />
-        ) : (
-          <Empty>Phonebook is Empty</Empty>
         )}
+        {!contacts.length && <Empty>Phonebook is Empty</Empty>}
       </Container>
     );
   }
