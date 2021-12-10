@@ -16,11 +16,13 @@ export const FormContainer = styled.form`
 `;
 
 export const Label = styled.label`
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Input = styled.input`
-  margin-bottom: 20px;
+  margin: 10px 0;
 `;
 
 export const Icon = styled(MdPersonAdd)`

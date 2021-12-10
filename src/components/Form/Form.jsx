@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { FormContainer, Label, Input, Button, Icon } from './Form.styled';
 
 export default class Form extends Component {
@@ -7,9 +6,6 @@ export default class Form extends Component {
     name: '',
     number: '',
   };
-
-  nameId = nanoid();
-  numberId = nanoid();
 
   handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -32,29 +28,31 @@ export default class Form extends Component {
 
     return (
       <FormContainer onSubmit={this.handleSubmit}>
-        <Label htmlFor={this.nameId}>Name</Label>
-        <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          id={this.nameId}
-          value={name}
-          onChange={this.handleChange}
-        />
+        <Label>
+          Name
+          <Input
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            value={name}
+            onChange={this.handleChange}
+          />
+        </Label>
 
-        <Label htmlFor={this.numberId}>Number</Label>
-        <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          id={this.numberId}
-          value={number}
-          onChange={this.handleChange}
-        />
+        <Label>
+          Number
+          <Input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={number}
+            onChange={this.handleChange}
+          />
+        </Label>
 
         <Button type="submit">
           <Icon />
